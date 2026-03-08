@@ -1,6 +1,10 @@
 # Dependencies
 node_modules/
 
+# Build output
+dist/
+build/
+
 # Environment variables
 .env
 .env.local
@@ -21,8 +25,7 @@ Thumbs.db
 *.swp
 *.swo
 
-# Package locks (optional - uncomment if you want to ignore them)
-# package-lock.json
-# yarn.lock
-# pnpm-lock.yaml
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
 

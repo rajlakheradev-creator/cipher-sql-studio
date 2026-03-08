@@ -21,8 +21,3 @@ Thumbs.db
 *.swp
 *.swo
 
-# Package locks (optional - uncomment if you want to ignore them)
-# package-lock.json
-# yarn.lock
-# pnpm-lock.yaml
-
