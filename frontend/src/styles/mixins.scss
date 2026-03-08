@@ -1,0 +1,13 @@
+@mixin button-primary {
+  background: $color-accent;
+  color: black;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+@mixin card {
+  background: $color-card;
+  border-radius: 8px;
+  padding: 16px;
+}
