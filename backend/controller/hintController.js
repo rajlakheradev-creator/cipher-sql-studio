@@ -1,7 +1,7 @@
 import pool from "../db/postgre.js";
 import dotenv from "dotenv";
 import OpenAI from "openai";
-
+import { assignments } from "./assignment.js";
 dotenv.config();
 
 const openai = new OpenAI({
@@ -15,7 +15,14 @@ export async function hints(req, res) {
     // ============================================
     // ADD YOUR PROMPT HERE
     // ============================================
-    const systemPrompt = ``;
+    const systemPrompt = `
+    You are a sql expert and you have to give hint of any question user asks.
+    Analyze that question and give :
+    1.Give 2 lines hint.
+    2.It should be brief and clear.
+    
+       
+    `;
     // ============================================
 
     const userMessage = `
@@ -33,6 +40,7 @@ Please provide a hint to help the user solve this SQL problem.
         { role: "user", content: userMessage },
       ],
       max_tokens: 500,
+      temperature:0.7
     });
 
     const hint = completion.choices[0].message.content;
