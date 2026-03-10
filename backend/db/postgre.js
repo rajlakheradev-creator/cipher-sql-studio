@@ -1,12 +1,13 @@
 import pkg from 'pg';
-import { pool, Pool } from "pg";
-
+import {  Pool } from "pg";
+import { configDotenv } from 'dotenv';
+import dotenv from 'dotenv'
 const pool=new Pool({
 
-    user:"postgres",
+    user:process.env.POSTGRES_USER,
     host:"localhost",
-    database:"CipherSqlStudio",
-    password:"Raj123098",
+    database: process.env.POSTGRES_DB,
+    password:process.env.POSTGRES_PASSWORD,
     port:5432,
 
 });

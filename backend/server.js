@@ -6,7 +6,7 @@ import pool from "./db/postgre.js";
 const PORT=8000;
 
 app.use(cors());
-app.use(json());
+app.use(express.json());
 
 app.use("/api/assignments",require("./routes/assigment.js").default);
 app.use("/api/execute",require("./routes/execute.js").default);
