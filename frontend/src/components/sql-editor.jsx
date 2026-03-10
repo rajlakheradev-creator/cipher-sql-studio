@@ -1,9 +1,24 @@
 import React from "react";
-import { useEffect,useState } from "react";
-export default function sqlEditor(){
-    return(
-        <div id="SQL-editor">
-            <textarea id="SQL-editor__textarea" placeholder="Enter your SQL query here..."></textarea>
-        </div>
-    )
+import { Editor } from "@monaco-editor/react";
+
+export default function SqlEditor({ value, onChange }) {
+  const handleChange = (val) => {
+    if (onChange) {
+      onChange(val);
+    }
+    console.log("SQL query:", val);
+  };
+
+  return (
+    <div id="SQL-editor">
+      <Editor
+        height="100%"
+        defaultLanguage="sql"
+        defaultValue="SELECT * FROM table_name;"
+        value={value}
+        theme="vs-dark"
+        onChange={handleChange}
+      />
+    </div>
+  );
 }

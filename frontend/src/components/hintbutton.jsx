@@ -1,9 +1,11 @@
 import React from "react";
-import { useEffect,useState } from "react";
-export default function hintButton(){
-    return(
-        <div id="Hint-button">
-            <button id="Hint-button__button">Get Hint</button>
-        </div>
-    )
+
+export default function HintButton({ onClick, loading }) {
+  return (
+    <div id="Hint-button">
+      <button id="Hint-button__button" onClick={onClick} disabled={loading}>
+        {loading ? "Loading..." : "Get Hint"}
+      </button>
+    </div>
+  );
 }

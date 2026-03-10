@@ -1,8 +1,8 @@
 import axios from "axios";
 import React from "react";
 import { useEffect,useState } from "react";// Importing necessary libraries and hooks for making HTTP requests and managing state in the component.
-import assignmentCard from "../components/assignment-card";
-
+import AssignmentCard from "../components/assignment-card";
+import "../styles/_main.scss";
 function Assignmentslist(){
   
     return(
@@ -12,7 +12,7 @@ function Assignmentslist(){
                 
                  <ul>
 
-                    <assignmentCard />
+                    <AssignmentCard />
 
                  </ul>
                 

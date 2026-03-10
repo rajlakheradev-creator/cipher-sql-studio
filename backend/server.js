@@ -1,10 +1,11 @@
 import express from "express";
-import { json } from "express";
 import cors from "cors";
-import pool from "./db/postgre.js";
+import dotenv from "dotenv";
 import assignmentsRouter from "./routes/assigment.js";
 import executeRouter from "./routes/execute.js";
 import hintsRouter from "./routes/hint.js";
+
+dotenv.config({ path: "../.env" });
 
 const app = express();
 const PORT = 8000;
