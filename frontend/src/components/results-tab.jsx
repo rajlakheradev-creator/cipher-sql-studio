@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect,useState } from "react";
 
-function resultsTab(){
+export default function resultsTab(){
     return(
    <div id="Results-tab">
         <h1 id="Results-tab__title">Results</h1>

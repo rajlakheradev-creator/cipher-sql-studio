@@ -2,16 +2,33 @@ import express from "express";
 import { json } from "express";
 import cors from "cors";
 import pool from "./db/postgre.js";
- const app= express();
-const PORT=8000;
+import assignmentsRouter from "./routes/assigment.js";
+import executeRouter from "./routes/execute.js";
+import hintsRouter from "./routes/hint.js";
+
+const app = express();
+const PORT = 8000;
 
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/assignments",require("./routes/assigment.js").default);
-app.use("/api/execute",require("./routes/execute.js").default);
-app.use("/api/hints",require("./routes/hint.js").default);
+// Root route - API info
+app.get("/", (req, res) => {
+  res.json({
+    message: "Cipher SQL Studio API",
+    endpoints: {
+      assignments: "/api/assignments",
+      execute: "/api/execute",
+      hints: "/api/hints",
+    },
+    status: "running",
+  });
+});
+
+app.use("/api/assignments", assignmentsRouter);
+app.use("/api/execute", executeRouter);
+app.use("/api/hints", hintsRouter);
 
 app.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}`)
+  console.log(`Server running on http://localhost:${PORT}`),
 );
