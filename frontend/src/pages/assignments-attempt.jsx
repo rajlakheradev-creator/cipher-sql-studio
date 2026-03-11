@@ -9,22 +9,32 @@ import SqlEditor from "../components/sql-editor";
 import ResultsTab from "../components/results-tab";
 
 export default function AssignmentsAttempt() {
-  const [currentQuery, setCurrentQuery] = useState("");
-  const [hint, setHint] = useState("");
-  const [results, setResults] = useState([]);
-  const [loading, setLoading] = useState(false);
+
+  const [currentQuery, setCurrentQuery] = useState("");// State to hold the current SQL query, the hint received from the backend, the results of query execution, and a loading state to manage asynchronous operations.
+
+  const [hint, setHint] = useState("");// State to hold the current SQL query, the hint received from the backend, the results of query execution, and a loading state to manage asynchronous operations.
+
+  const [results, setResults] = useState([]);// State to hold the current SQL query, the hint received from the backend, the results of query execution, and a loading state to manage asynchronous operations.
+
+  const [loading, setLoading] = useState(false);// State to hold the current SQL query, the hint received from the backend, the results of query execution, and a loading state to manage asynchronous operations.
 
   const handleQueryChange = (value) => {
-    setCurrentQuery(value || "");
-  };
 
-  const handleHintClick = async () => {
+    setCurrentQuery(value || "");
+
+  };// Function to handle changes in the SQL editor and update the currentQuery state accordingly.
+
+  const handleHintClick = async () => {// Function to handle the click event of the hint button, which sends the current query to the backend and retrieves a hint based on the query.
+
     if (!currentQuery.trim()) {
+// Check if the current query is empty or only contains whitespace. If it is, set a hint message prompting the user to write a query first and return early from the function.
       setHint("Please write a query first!");
+
       return;
     }
 
     setLoading(true);
+    // Set the loading state to true to indicate that an asynchronous operation is in progress while fetching the hint from the backend.
     try {
       const response = await axios.post("http://localhost:8000/api/hints", {
         question: "Sample question",

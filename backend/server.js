@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import assignmentsRouter from "./routes/assigment.js";
+import assignmentsRouter from "./routes/assignment.js";
 import executeRouter from "./routes/execute.js";
 import hintsRouter from "./routes/hint.js";
 

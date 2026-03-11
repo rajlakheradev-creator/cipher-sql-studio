@@ -17,7 +17,7 @@ export async function assignments2(req, res) {
     try {
       const result1 = await pool.query(
         "SELECT * FROM assignments WHERE Id=$1",
-        id,
+        [id],
       );
 
       if (result1.rows.length === 0) {
@@ -41,7 +41,7 @@ export async function assignmentsPost(req, res) {
     "INSERT INTO assignments(title,description,difficulty )VALUES($1,$2,$3)RETURNING *";
   const values = [title, description, difficulty];
   if (!title || !difficulty || !description) {
-    return res.status(404).json("values are missing");
+return res.status(400).json({ error: "Values are missing" });
   } else {
     try {
       const data = await pool.query(query, values);
@@ -58,7 +58,7 @@ export async function assignmentsUpdate(req, res) {
   const { title, description, difficulty } = req.body;
 
   if (!title || !difficulty || !description) {
-    return res.status(404).json("values are missing");
+return res.status(400).json({ error: "Values are missing" });
   } else {
     try {
       const UpdateQuery =
