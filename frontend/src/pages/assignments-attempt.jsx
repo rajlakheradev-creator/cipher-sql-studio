@@ -2,7 +2,8 @@ import React from "react";
 import { useState } from "react";
 import axios from "axios";
 import "../styles/_main.scss";
-
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import AssignmentCard from "../components/assignment-card";
 import HintButton from "../components/hintbutton";
 import SqlEditor from "../components/sql-editor";
@@ -18,6 +19,9 @@ export default function AssignmentsAttempt() {
 
   const [loading, setLoading] = useState(false);// State to hold the current SQL query, the hint received from the backend, the results of query execution, and a loading state to manage asynchronous operations.
 
+   const { id } = useParams();
+  const [assignment, setAssignment] = useState(null);
+  
   const handleQueryChange = (value) => {
 
     setCurrentQuery(value || "");
@@ -36,11 +40,19 @@ export default function AssignmentsAttempt() {
     setLoading(true);
     // Set the loading state to true to indicate that an asynchronous operation is in progress while fetching the hint from the backend.
     try {
-      const response = await axios.post("http://localhost:8000/api/hints", {
-        question: "Sample question",
-        currentQuery: currentQuery,
-        schema: "",
-      });
+useEffect(() => {
+    axios.get(`http://localhost:8000/api/assignments/${id}`)
+      .then(res => setAssignment(res.data[0]))
+      .catch(err => console.error(err));
+  }, [id]);// useEffect hook to fetch the assignment details from the backend API when the component mounts or when the id parameter changes. The fetched assignment data is stored in the assignment state.
+
+  const response = await axios.post("http://localhost:8000/api/hints", {
+    question: assignment?.description || "",
+    currentQuery: currentQuery,
+    schema: "",
+    assignmentId: id,
+  });// Make a POST request to the backend API to fetch a hint based on the current query and assignment description. The response is expected to contain a hint, which is then set in the hint state.
+
       setHint(response.data.hint);
     } catch (err) {
       setHint("Failed to get hint. Please try again.");
@@ -74,7 +86,7 @@ export default function AssignmentsAttempt() {
   return (
     <div id="attempt-container">
       <h1 id="attempt-container__header">Assignments Attempt</h1>
-      <AssignmentCard />
+      <AssignmentCard id={id}/>
       <HintButton onClick={handleHintClick} loading={loading} />
       {hint && (
         <div className="hint-display">
