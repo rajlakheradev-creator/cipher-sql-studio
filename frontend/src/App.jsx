@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import AssignmentsList from "./pages/assignments-list";
 import AssignmentsAttempt from "./pages/assignments-attempt";
-import "./App.css";
+import "./styles/_main.scss"
 
 function App() {
   return (

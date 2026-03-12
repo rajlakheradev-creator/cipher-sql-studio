@@ -1,6 +1,7 @@
 import React from "react";
 import { Editor } from "@monaco-editor/react";
-
+import "../styles/_main.scss"
+import "../styles/_mixins.scss"
 export default function SqlEditor({ value, onChange }) {
   const handleChange = (val) => {
     if (onChange) {

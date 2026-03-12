@@ -16,7 +16,7 @@ export async function assignments2(req, res) {
   } else {
     try {
       const result1 = await pool.query(
-        "SELECT * FROM assignments WHERE Id=$1",
+        "SELECT * FROM assignments WHERE id=$1",
         [id],
       );
 

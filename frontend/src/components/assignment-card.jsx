@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 function AssignmentCard({ id }) {
@@ -20,17 +20,23 @@ function AssignmentCard({ id }) {
     <div id="Assignment-card">
       <h1 id="Assignment-card__title">Title</h1>
 
-      {assignments.map((a) => {
-        return (
-          <Link to={`/assignments/${a.id}`} style={{ textDecoration: "none", color: "inherit" }}>
-          <div key={a.id} className="assignment">
-            <p>{a.title}</p>
-            <p>{a.description}</p>
-            <span>{a.difficulty}</span>
-          </div>
-          </Link>
-        );
-      })}
+      {/* // ✅ key on Link (the outermost element) */}
+{/* // ✅ Only wrap in Link when no id (list view) */}
+{assignments.map((a) => {
+  const card = (
+    <div key={a.id} className="assignment">
+      <p className="assignment-card__para">{a.title}</p>
+      <p className="assignment-card__para">{a.description}</p>
+      <span className="assignment-card__span">{a.difficulty}</span>
+    </div>
+  );
+
+  return id ? card : (
+    <Link key={a.id} to={`/assignments/${a.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+      {card}
+    </Link>
+  );
+})}
     </div>
   );
 }

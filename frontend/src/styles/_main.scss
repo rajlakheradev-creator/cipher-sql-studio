@@ -1,0 +1,120 @@
+@use "variables" as *;
+.app-container {
+  background-color: $color-background;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, Helvetica, sans-serif;
+  color: $color-text;
+  min-height: 100vh;
+}
+body {
+  margin: 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu",
+    "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// assignment-list selectors come here
+#assignment-list {
+  background-color: $color-primary;
+  color: $color-text;
+  min-height: 100vh;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#assignment-list__title {
+  color: $color-text;
+}
+#assignment-list__card {
+}
+#assignment-card__span {
+}
+#assignment-card__para {
+}
+
+// assignment-attempt page selectors here
+#attempt-container {
+  background: $color-primary;
+  color: $color-text;
+  padding: 20px;
+}
+
+#attempt-container__header {
+}
+#attempt-container__para {
+}
+.hint-display {
+}
+.execute-button {
+}
+
+// assignment-card page selectors here
+#assignment-card {
+  background: $color-card; // #1E293B
+  border: 1px solid $color-gray;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3); // Matches your "box shadow" note
+  margin: 15px 0;
+
+  .assignment-card__span {
+    color: $color-accent; // #00E5FF
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+}
+#assignment-card__title {
+  color: $color-text;
+}
+.assignment {
+}
+.assignment:hover {
+}
+
+// hint-button page selectors here
+#hint-button {
+  background: $color-accent;
+  color: black;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+#hint-button__button {
+}
+#hint-button__button :disabled {
+}
+// sql-editor page selectors here
+#SQL-editor {
+  background: $color-card;
+  border: 1px solid $color-sky;
+}
+// results-tab page selectors here
+#Results-tab {
+}
+#results-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th {
+  background: $color-gray;
+  color: black;
+}
+td {
+  border: 1px solid $color-sky;
+  padding: 8px;
+}
+#Results-tab__title {
+}
+#Results-tab__description {
+}
+.results-table {
+}

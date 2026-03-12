@@ -1,5 +1,6 @@
 import React from "react";
-
+import "../styles/_main.scss"
+import "../styles/_mixins.scss"
 export default function HintButton({ onClick, loading }) {
   return (
     <div id="Hint-button">

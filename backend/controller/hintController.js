@@ -1,10 +1,8 @@
 import dotenv from "dotenv";
-import OpenAI from "openai";
+import Groq from "groq-sdk";
 dotenv.config({ path: "../.env" });
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
 export async function hints(req, res) {
   try {
@@ -19,13 +17,11 @@ export async function hints(req, res) {
     // ADD YOUR PROMPT HERE
     // ============================================
     const systemPrompt = `
-    You are a sql expert and you have to give hint of any question user asks.
-    Analyze that question and give :
-    1.Give 2 lines hint.
-    2.It should be brief and clear.
-    
-    
-    `;
+   You are a SQL expert teaching a student.
+1. Provide a 2-line conceptual hint without giving the full SQL code.
+2. Focus on the JOIN logic or the WHERE clause needed for the specific question.
+3. Keep it brief and encouraging.
+`;
     // ============================================
 
     const userMessage = `
@@ -36,8 +32,8 @@ Current Query: ${currentQuery}
 Please provide a hint to help the user solve this SQL problem.
 `;
 
-    const completion = await openai.chat.completions.create({
-      model: "gpt-4o",
+    const completion = await groq.chat.completions.create({
+      model: "llama3-8b-8192",
       messages: [
         { role: "system", content: systemPrompt },
         { role: "user", content: userMessage },
