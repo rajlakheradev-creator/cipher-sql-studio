@@ -27,7 +27,8 @@ export default function AssignmentsList() {
       <h1 id="assignment-list__title">Assignments</h1>
       <div id="assignment-list__cards">
         {assignments.map((a) => (
-          <AssignmentCard key={a.id} />
+          <AssignmentCard key={a.id} id={a.id} />
+
         ))}
       </div>
     </div>

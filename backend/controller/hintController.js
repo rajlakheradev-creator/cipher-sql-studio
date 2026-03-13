@@ -1,8 +1,6 @@
 import dotenv from "dotenv";
 import Groq from "groq-sdk";
-dotenv.config({ path: "../.env" });
-
-const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
+// dotenv handled in server.js
 
 export async function hints(req, res) {
   try {
@@ -12,6 +10,20 @@ export async function hints(req, res) {
     if (!question) {
       return res.status(400).json({ error: "Question is required" });
     }
+
+    if (
+      !process.env.GROQ_API_KEY ||
+      typeof process.env.GROQ_API_KEY !== "string"
+    ) {
+      return res
+        .status(500)
+        .json({
+          error:
+            "GROQ_API_KEY env var missing/invalid. Add to backend/.env: GROQ_API_KEY=yourkey",
+        });
+    }
+
+    const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
     // ============================================
     // ADD YOUR PROMPT HERE

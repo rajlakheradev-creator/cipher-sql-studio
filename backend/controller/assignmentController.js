@@ -2,7 +2,7 @@ import pool from "../db/postgre.js";
 export async function assignments(req, res) {
   try {
     const result = await pool.query("SELECT * FROM assignments");
-    res.json(result.rows); // it is used to get rows
+    res.json(result.rows);
   } catch (err) {
     console.error("Internal error in Db", err);
     res.status(500).json({ error: "Failed to fetch assignments" });
@@ -24,7 +24,7 @@ export async function assignments2(req, res) {
         return res.status(404).json({ error: "no query containing id" });
       } else {
         res.json(result1.rows);
-      } // it is used to get rows
+      }
     } catch (err) {
       console.error("Internal error in Db", err);
       res.status(500).json({ error: "Failed to fetch assignments" });
@@ -41,7 +41,7 @@ export async function assignmentsPost(req, res) {
     "INSERT INTO assignments(title,description,difficulty )VALUES($1,$2,$3)RETURNING *";
   const values = [title, description, difficulty];
   if (!title || !difficulty || !description) {
-return res.status(400).json({ error: "Values are missing" });
+    return res.status(400).json({ error: "Values are missing" });
   } else {
     try {
       const data = await pool.query(query, values);
@@ -58,7 +58,7 @@ export async function assignmentsUpdate(req, res) {
   const { title, description, difficulty } = req.body;
 
   if (!title || !difficulty || !description) {
-return res.status(400).json({ error: "Values are missing" });
+    return res.status(400).json({ error: "Values are missing" });
   } else {
     try {
       const UpdateQuery =
